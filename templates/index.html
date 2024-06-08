@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Customer Records</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+  
+  <h1 align="center"><u>Telecom Billing System</u></h1>
+
+
+<div class="divtbborder">
+<div id="carouselExampleIndicators" class="carousel slide">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{{ url_for('static',filename='1700158687098rj5mdabj.png') }}" class="d-block w-100" alt="img3" height="350px">
+      </div>
+      <div class="carousel-item">
+        <img src="{{ url_for('static',filename='1700158647357sxqex79j.png') }}" class="d-block w-100" alt="img2"height="350px">
+      </div>
+      <div class="carousel-item">
+        <img src="{{ url_for('static',filename='1700158574986wi0ennue.png') }}" class="d-block w-100" alt="img1"height="350px">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+<h1 align="center"><u>Customer Records</u></h1>
+<div class="hello" style="background-image: url({{ url_for('static',filename='desk.png') }});">
+    <form action="/add_record" method="post" class="hero">
+        <label for="name" class="textop">Name:</label><br>
+        <input type="text" name="name" required class="hellobutt" placeholder="Enter The Name">
+        <br>
+        <label for="phone_number" class="textop">Phone Number:</label><br>
+        <input type="text" name="phone_number" required class="hellobutt" placeholder="Enter The Phone Number">
+        <br>
+        <label for="usage" class="textop">Usage (in minutes):</label><br>
+        <input type="text" name="usage" required class="hellobutt" placeholder="Enter The Usage">
+        <br>
+        <br>
+        <div style="display: flex;
+        justify-content: center;
+        align-items: center;">
+        <button type="submit" class="buttoncss">Add Record</button>
+      </div><br>
+    </form>
+</div>
+
+    <h1 align="center"><u>Modify Record:</u></h1>
+    <div class="hello" style="background-image: url({{ url_for('static',filename='desk2.png') }});">
+    <form action="/modify_record" method="post">
+        <label for="phone_number_modify" class="textop">Phone Number:</label><br>
+        <input type="text" name="phone_number" required class="hellobutt" placeholder="Enter The Phone Number">
+        <br>
+        <label for="new_usage" class="textop">New Usage (in minutes):</label><br>
+        <input type="text" name="new_usage" required class="hellobutt" placeholder="Enter The Usage">
+        <br><br>
+        <div style="display: flex;
+        justify-content: center;
+        align-items: center;">
+        <button type="submit" class="buttoncss">Modify Record</button>
+        </div><br>
+    </form>
+  </div>
+
+    <h1 align="center"><u>Delete Record</u></h1>
+    <div class="hello" style="background-image: url({{ url_for('static',filename='desk.png') }});">
+    <form action="/delete_record" method="post">
+        <label for="phone_number_delete" class="textop">Phone Number:</label><br>
+        <input type="text" name="phone_number" required class="hellobutt" placeholder="Enter The Phone Number">
+        <br><br>
+        <div style="display: flex;
+        justify-content: center;
+        align-items: center;">
+        <button type="submit" class="buttoncss">Delete Record</button>
+    </div><br>
+    </form>
+  </div>
+
+  <h1 align="center"><u>Customer Records</u></h1>
+    <div class="hello" style="background-image: url({{ url_for('static',filename='background1.jpg') }});" >
+    <table border="2"  style="background-color: aliceblue; border: black solid 2px;width: 700px;">
+        <tr>
+            <th>Name</th>
+            <th>Phone Number</th>
+            <th>Usage (min)</th>
+            <th>Total Bill ($)</th>
+        </tr>
+        {% for customer in customers %}
+            <tr>
+                <td>{{ customer.name }}</td>
+                <td>{{ customer.phone_number }}</td>
+                <td>{{ customer.usage }}</td>
+                <td>{{ customer.total_bill }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+  </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>
